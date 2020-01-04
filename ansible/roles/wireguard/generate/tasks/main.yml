@@ -1,0 +1,25 @@
+- name: generate wireguard peers
+  shell: |
+    cd {{ PREFIX }}/ && python3 ./ensure-peer.py {{ item }}
+  args:
+    creates: >-
+      {{ PREFIX }}/peers/{{ item }}.conf
+  loop: >-
+    {{ WIREGUARD_PEERS }}
+
+- name: gather wireguard peer configs
+  slurp:
+    src: >-
+      {{ PREFIX }}/peers/{{ item }}.conf
+  loop: >-
+    {{ WIREGUARD_PEERS }}
+  register: slurp_wireguard_peers
+
+- set_fact:
+    wireguard_peers: >-
+      {{ dict(WIREGUARD_PEERS | zip(
+        slurp_wireguard_peers.results
+        | map(attribute="content")
+        | map("b64decode")
+        | map("trim")
+      )) }}

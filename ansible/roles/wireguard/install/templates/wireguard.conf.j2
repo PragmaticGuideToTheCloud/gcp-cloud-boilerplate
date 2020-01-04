@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+[Interface]
+Address    = {{ PEER_SUBNET | ipaddr(1) }}
+ListenPort = {{ SERVER_PORT }}
+PrivateKey = {{ SERVER_KEY }}
+PreUp      = iptables -t nat -A POSTROUTING -o {{ ansible_default_ipv4.interface }} -s {{ PEER_SUBNET }} -j MASQUERADE
+PostDown   = iptables -t nat -D POSTROUTING -o {{ ansible_default_ipv4.interface }} -s {{ PEER_SUBNET }} -j MASQUERADE

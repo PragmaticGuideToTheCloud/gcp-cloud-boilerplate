@@ -1,0 +1,11 @@
+- name: start wg-quick
+  service:
+    name: "wg-quick@{{ WIREGUARD_IF }}"
+    enabled: true
+    state: started
+
+- name: restart wg-quick
+  service:
+    name: "wg-quick@{{ WIREGUARD_IF }}"
+    enabled: true
+    state: restarted

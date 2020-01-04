@@ -1,0 +1,9 @@
+- name: bootstrap python intepreter
+  script: "{{ playbook_dir }}/roles/python/install/templates/python.sh"
+  args:
+    executable: /bin/bash
+    creates: /usr/bin/python
+  register: result
+  until: result.rc | d(0) == 0
+  retries: 20
+  delay: 12

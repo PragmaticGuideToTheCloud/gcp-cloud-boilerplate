@@ -1,0 +1,31 @@
+- hosts: [targets]
+
+  roles:
+    - role: python/install
+
+
+- hosts: [targets]
+
+  gather_facts: true
+  gather_subset: [min, network]
+
+  tasks:
+    - import_role: { name: python3/install }
+
+    - meta: flush_handlers
+
+    - import_role: { name: wireguard/install }
+
+    - meta: flush_handlers
+
+    - import_role: { name: wireguard/generate }
+
+    - meta: flush_handlers
+
+
+- hosts: [localhost]
+
+  become: false
+
+  roles:
+    - role: wireguard/collect

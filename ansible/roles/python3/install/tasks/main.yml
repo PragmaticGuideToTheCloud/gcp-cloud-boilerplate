@@ -1,0 +1,8 @@
+- name: install python3 libs
+  apt:
+    name:
+      - python3-netaddr
+  register: result
+  until: result is success
+  retries: 20
+  delay: 12

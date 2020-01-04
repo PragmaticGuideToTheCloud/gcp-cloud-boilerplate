@@ -1,0 +1,31 @@
+- name: borrow the wireguard_peers fact
+  set_fact:
+    wireguard_peers: >-
+      {{ hostvars[groups.targets | first].wireguard_peers }}
+
+- set_fact:
+    WIREGUARD_PEER_DESTDIR: >-
+      {{ WIREGUARD_PEER_DESTDIR
+      | d(playbook_dir ~ "/.cache/profiles/")
+      | realpath }}
+
+- name: ensure the WIREGUARD_PEER_DESTDIR cache directory is empty
+  file:
+    path: >-
+      {{ WIREGUARD_PEER_DESTDIR }}/
+    state: >-
+      {{ item }}
+  loop:
+    - absent
+    - directory
+
+- name: save wireguard peer config files
+  copy:
+    dest: >-
+      {{ WIREGUARD_PEER_DESTDIR }}/{{ item.key }}.conf
+    content: >-
+      {{ item.value }}
+  loop: >-
+    {{ wireguard_peers | dict2items }}
+
+- debug: var=wireguard_peers
