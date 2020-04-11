@@ -32,7 +32,6 @@ spec:
               set -o errexit
               cp /config/kubernetes/${ENV_NAME}/api/.env /app/backend/
               cp /config/kubernetes/${ENV_NAME}/api/nginx-default.conf /etc/nginx/conf.d/default.conf
-              cp /config/kubernetes/${ENV_NAME}/web/.env /app/frontend/
 
               php /app/backend/bin/console doctrine:migrations:migrate -n
               php /app/backend/bin/console cache:warmup --env=prod
