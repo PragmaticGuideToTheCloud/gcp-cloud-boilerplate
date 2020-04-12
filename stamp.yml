@@ -1,0 +1,7 @@
+#
+# MAINTAINER: wlodzimierz.gajda@edulab.io
+#
+
+filename:    'version.txt'
+regex:       '|(?P<version>[\d\.]+)|'
+replacement: '{{ version }}'
