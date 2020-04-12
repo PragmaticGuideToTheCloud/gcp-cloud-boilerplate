@@ -24,6 +24,24 @@ variable "master_ipv4_cidr_block" {
   type = string
 }
 
+variable "initial_node_count" {
+  type = string
+  default = 1
+  description = "initial number of compute nodes"
+}
+
+variable "min_node_count" {
+  type = string
+  default = 1
+  description = "minimal number of compute nodes (autoscaling)"
+}
+
+variable "max_node_count" {
+  type = string
+  default = 2
+  description = "maximal number of compute nodes (autoscaling)"
+}
+
 variable "compute_preemptible" {
   type = string
   default = true
@@ -32,7 +50,7 @@ variable "compute_preemptible" {
 
 variable "compute_machine_type" {
   type = string
-  default = "g1-small"
+  default = "n1-standard-2"
 }
 
 variable "compute_disk_size_gb" {
