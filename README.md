@@ -3,7 +3,9 @@
 
 * GCP ✓
 * VPC ✓
-* kubernetes ✓
+* GKE ✓
+* SQL ✓
+* MEMORYSTORE ✓
 * bastion + wireguard ✓
 
 Cloud details:
@@ -35,4 +37,14 @@ GKE
     PROVISIONING
         kubernetes_service_account
         kubernetes_cluster_role_binding
+
+SQL
+    DATABASE
+        google_sql_database_instance
+        google_sql_user
+        google_sql_database
+
+MEMORYSTORE
+    MEMORYSTORE
+        google_redis_instance
 ```
