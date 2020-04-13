@@ -1,0 +1,8 @@
+
+dependencies:
+  - name: minio
+    version: 2.5.18
+    repository: https://kubernetes-charts.storage.googleapis.com
+    condition: minio.enabled
+
+# vim:ts=2:sw=2:et:syn=yaml:

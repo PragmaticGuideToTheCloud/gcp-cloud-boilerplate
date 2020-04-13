@@ -1,0 +1,17 @@
+{{- range $micro, $config := .Values.micro }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "aiqa.fullname" $ }}-{{ $micro }}
+  labels:
+    app: {{ template "aiqa.name" $ }}-{{ $micro }}
+    chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+data:
+{{- if $config.environment }}
+{{ toYaml $config.environment | indent 2 }}
+{{- end }}
+{{- end }}
+# vim:ts=2:sw=2:et:syn=yaml:
