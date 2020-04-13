@@ -3,7 +3,9 @@
 
 * GCP ✓
 * VPC ✓
-* kubernetes ✓
+* GKE ✓
+* SQL ✓
+* MEMORYSTORE ✓
 * bastion + wireguard ✓
 
 Cloud details:
@@ -35,4 +37,23 @@ GKE
     PROVISIONING
         kubernetes_service_account
         kubernetes_cluster_role_binding
+
+SQL
+    DATABASE
+        google_sql_database_instance
+        google_sql_user
+        google_sql_database
+
+MEMORYSTORE
+    MEMORYSTORE
+        google_redis_instance
 ```
+
+Parameters:
+
+* GKE in zone / GKE in region
+* GKE with autoscaling / GKE without autoscaling
+* GKE nodes: regular / preemptible
+* GKE node: n1-standard-1, n1-standard-2, etc.
+* GKE number of nodes
+* GKE number of pods
