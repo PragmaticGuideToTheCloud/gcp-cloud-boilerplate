@@ -1,0 +1,43 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: &name {{ template "aiqa.fullname" . }}-post-job
+  labels: &labels
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/name: {{ template "aiqa.name" . }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    metadata:
+      name: *name
+      labels: *labels
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install-job
+          image: "{{ .Values.micro.api.image.repository }}:{{ .Values.micro.api.image.tag }}"
+          command:
+            - "/bin/bash"
+          args:
+            - "-c"
+            - |
+              set -o errexit
+              cp /config/kubernetes/${ENV_NAME}/api/parameters.yml /app/backend/app/config/
+              cp /config/kubernetes/${ENV_NAME}/api/nginx-default.conf /etc/nginx/conf.d/default.conf
+              php /app/backend/bin/console redis:flushdb -n
+              php /app/backend/bin/console doctrine:migrations:migrate -n
+              php /app/backend/bin/console doctrine:schema:update --dump-sql
+              php /app/backend/bin/console cache:warmup --env=prod
+              php /app/backend/bin/console push:tokens:redisdb
+          envFrom:
+            - configMapRef:
+                name: {{ template "aiqa.fullname" . }}-api
+# vim:ts=2:sw=2:et:syn=yaml:
