@@ -42,11 +42,6 @@ resource "google_container_node_pool" "gke" {
 
   initial_node_count = var.initial_node_count
 
-  autoscaling {
-    min_node_count = var.min_node_count
-    max_node_count = var.max_node_count
-  }
-
   management {
     auto_repair  = true
     auto_upgrade = true
