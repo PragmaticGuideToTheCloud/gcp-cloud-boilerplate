@@ -2,6 +2,7 @@
 locals {
   bastion_tags = [ "bastion" ]
   playbook_dir = "${path.root}/../../../../../../../../ansible/${var.vpc_name}"
+  wireguard_bastion_file = [ "bastion-${var.project}" ]
 }
 
 data "google_compute_zones" "vpc" {}
@@ -81,7 +82,7 @@ resource "local_file" "bastion" {
   filename = "${local.playbook_dir}/hosts.ini"
 
   content = templatefile("${local.playbook_dir}/hosts.ini.tpl", {
-    WIREGUARD_PEERS = "WIREGUARD_PEERS=${jsonencode(var.wireguard_peers)}"
+    WIREGUARD_PEERS = "WIREGUARD_PEERS=${jsonencode(local.wireguard_bastion_file)}"
     TARGET = join(" ", [
       google_compute_instance.bastion.*.name[count.index],
       "ansible_user=${var.bastion_user}",
