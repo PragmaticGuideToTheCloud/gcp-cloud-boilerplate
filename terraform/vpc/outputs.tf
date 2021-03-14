@@ -1,6 +1,6 @@
 
 locals {
-  wireguard_peer_filename = "${path.root}/../../../../../../../../ansible/${var.vpc_name}/.cache/peers/bastion-${var.project}.conf"
+  wireguard_peer_destdir = "${path.root}/../../../../../../../../ansible/${var.vpc_name}/.cache/peers/"
 }
 
 output "vpc_link" {
@@ -23,6 +23,6 @@ output "bastion_port" {
   value = var.bastion_port
 }
 
-output "wireguard_peer_filename" {
-  value = "${abspath(local.wireguard_peer_filename)}"
+output "wireguard_peers" {
+  value = ">>> PLEASE FIND VPN PEER CONFIG FILES HERE -> ${abspath(local.wireguard_peer_destdir)} <<<"
 }
