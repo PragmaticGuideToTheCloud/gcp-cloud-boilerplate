@@ -24,5 +24,5 @@ output "bastion_port" {
 }
 
 output "wireguard_peer_filename" {
-  value = "${abspath(local.wireguard_peer_filename)} <<<"
+  value = "${abspath(local.wireguard_peer_filename)}"
 }
