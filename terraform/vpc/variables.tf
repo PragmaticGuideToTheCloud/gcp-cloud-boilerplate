@@ -51,8 +51,3 @@ variable "wireguard_port" {
   default = "1691"
 }
 
-variable "wireguard_peers" {
-  type = list
-  default = []
-  description = "list of peer names"
-}
