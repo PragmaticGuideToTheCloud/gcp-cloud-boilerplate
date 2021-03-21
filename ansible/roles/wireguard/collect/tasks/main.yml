@@ -16,7 +16,6 @@
     state: >-
       {{ item }}
   loop:
-    - absent
     - directory
 
 - name: save wireguard peer config files
