@@ -1,6 +1,6 @@
 
 locals {
-  wireguard_peer_filename = "${path.root}/../../../../../../../../vpn/${var.vpc_name}/bastion-${var.project}.conf"
+  wireguard_peer_filename = "vpn/${var.project}-${var.vpc_name}.conf"
 }
 
 output "vpc_link" {
@@ -24,5 +24,5 @@ output "bastion_port" {
 }
 
 output "wireguard_peer_filename" {
-  value = abspath(local.wireguard_peer_filename)
+  value = local.wireguard_peer_filename
 }
