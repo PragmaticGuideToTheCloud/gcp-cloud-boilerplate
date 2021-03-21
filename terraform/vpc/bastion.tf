@@ -110,9 +110,10 @@ resource "null_resource" "bastion" {
   provisioner "local-exec" {
     environment = {
       PLAYBOOK_DIR = local.playbook_dir
+      VPC_NAME = var.vpc_name
     }
     command = <<-EOF
-    $PLAYBOOK_DIR/apply.sh
+    $PLAYBOOK_DIR/apply.sh $VPC_NAME
     EOF
   }
 }
