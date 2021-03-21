@@ -2,7 +2,7 @@
 locals {
   bastion_tags = [ "bastion" ]
   playbook_dir = "${path.root}/../../../../../../../../ansible/${var.vpc_name}"
-  wireguard_bastion_file = [ "bastion-${var.project}" ]
+  wireguard_bastion_file = [ "${var.project}-${var.vpc_name}" ]
 }
 
 data "google_compute_zones" "vpc" {}
@@ -110,10 +110,9 @@ resource "null_resource" "bastion" {
   provisioner "local-exec" {
     environment = {
       PLAYBOOK_DIR = local.playbook_dir
-      VPC_NAME = var.vpc_name
     }
     command = <<-EOF
-    $PLAYBOOK_DIR/apply.sh $VPC_NAME
+    $PLAYBOOK_DIR/apply.sh
     EOF
   }
 }
