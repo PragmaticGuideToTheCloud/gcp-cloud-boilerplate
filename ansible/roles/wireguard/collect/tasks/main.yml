@@ -6,7 +6,7 @@
 - set_fact:
     WIREGUARD_PEER_DESTDIR: >-
       {{ WIREGUARD_PEER_DESTDIR
-      | d(playbook_dir ~ "/../../")
+      | d(playbook_dir ~ "/.cache/profiles/")
       | realpath }}
 
 - name: ensure the WIREGUARD_PEER_DESTDIR cache directory is empty
@@ -22,7 +22,7 @@
 - name: save wireguard peer config files
   copy:
     dest: >-
-      {{ WIREGUARD_PEER_DESTDIR }}/abc-{{ item.key }}.conf
+      {{ WIREGUARD_PEER_DESTDIR }}/{{ item.key }}.conf
     content: >-
       {{ item.value }}
   loop: >-
