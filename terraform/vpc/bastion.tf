@@ -113,7 +113,7 @@ resource "null_resource" "bastion" {
       VPC_NAME = var.vpc_name
     }
     command = <<-EOF
-    $PLAYBOOK_DIR/apply.sh abc
+    $PLAYBOOK_DIR/apply.sh abc $VPC_NAME
     EOF
   }
 }
