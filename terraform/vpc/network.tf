@@ -29,7 +29,7 @@ resource "google_compute_router_nat" "vpc" {
 }
 
 resource "google_compute_global_address" "vpc" {
-  name = "private-ip-address"
+  name = "private-ip-address-${var.vpc_name}"
 
   purpose      = "VPC_PEERING"
   address_type = "INTERNAL"
