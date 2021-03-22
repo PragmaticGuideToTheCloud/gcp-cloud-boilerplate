@@ -1,9 +1,10 @@
-variable "region" {
+variable "project" {
   type = string
 }
 
-variable "project" {
+variable "region" {
   type = string
+  default = "europe-west1"
 }
 
 variable "vpc_name" {

@@ -1,18 +1,20 @@
-variable "region" {
-  type = string
-}
-
-variable "zone" {
-  type = string
-}
-
 variable "project" {
   type = string
 }
 
-variable "env_name" {
+variable "region" {
   type = string
-  description = "name of the gke environment, e.g. `dev1` or `prod1`"
+  default = "europe-west1"
+}
+
+variable "zone" {
+  type = string
+  default = "europe-west1-b"
+}
+
+variable "master_ipv4_cidr_block" {
+  type = string
+  default = "10.132.16.0/28"
 }
 
 variable "vpc_name" {
@@ -20,9 +22,9 @@ variable "vpc_name" {
   description = "name of the vpc, e.g. `dev` or `prod`"
 }
 
-variable "master_ipv4_cidr_block" {
+variable "env_name" {
   type = string
-  default = "10.132.16.0/28"
+  description = "name of the gke environment, e.g. `dev1` or `prod1`"
 }
 
 variable "initial_node_count" {
