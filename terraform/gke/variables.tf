@@ -38,7 +38,7 @@ variable "min_node_count" {
 
 variable "max_node_count" {
   type = string
-  default = 2
+  default = 1
   description = "maximal number of compute nodes (autoscaling)"
 }
 
