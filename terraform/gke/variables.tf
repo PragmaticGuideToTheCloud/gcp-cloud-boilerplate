@@ -22,6 +22,7 @@ variable "vpc_name" {
 
 variable "master_ipv4_cidr_block" {
   type = string
+  default = "10.132.16.0/28"
 }
 
 variable "initial_node_count" {
