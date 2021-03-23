@@ -33,9 +33,9 @@ variable "bastion_boot_disk_image" {
   default = "ubuntu-os-cloud/ubuntu-minimal-1804-lts"
 }
 
-variable "bastion_public_key" {
+variable "bastion_public_key_filename" {
   type = string
-  default = file("~/.ssh/id_rsa.pub")
+  default = "~/.ssh/id_rsa.pub"
 }
 
 variable "bastion_user" {

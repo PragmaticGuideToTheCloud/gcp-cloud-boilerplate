@@ -43,7 +43,7 @@ resource "google_compute_instance" "bastion" {
   }
 
   metadata = {
-    ssh-keys = "${var.bastion_user}:${var.bastion_public_key}"
+    ssh-keys = join(":", [var.bastion_user, file(var.bastion_public_key_filename)])
   }
 
   tags = local.bastion_tags
