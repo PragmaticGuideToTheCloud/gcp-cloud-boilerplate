@@ -35,7 +35,7 @@ variable "bastion_boot_disk_image" {
 
 variable "bastion_public_key" {
   type = string
-  default = "~/.ssh/id_rsa.pub"
+  default = file("~/.ssh/id_rsa.pub")
 }
 
 variable "bastion_user" {
