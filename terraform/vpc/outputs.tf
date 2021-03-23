@@ -3,6 +3,14 @@ locals {
   wireguard_peer_filename = "vpn/${var.project}-${var.vpc_name}.conf"
 }
 
+output "vpc_link" {
+  value = google_compute_network.vpc.self_link
+}
+
+output "vpc_prefix_length" {
+  value = var.vpc_prefix_length
+}
+
 output "bastion_host" {
   value = google_compute_instance.bastion.*.network_interface.0.access_config.0.nat_ip
 }
