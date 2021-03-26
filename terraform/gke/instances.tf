@@ -32,7 +32,7 @@ resource "google_container_cluster" "gke" {
     }
   }
 
-  network = data.terraform_remote_state.vpc.outputs.vpc_link
+  network = data.remote_state.vpc.outputs.vpc_link
 }
 
 resource "google_container_node_pool" "gke" {
