@@ -28,7 +28,7 @@ resource "google_container_cluster" "gke" {
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block = "10.132.0.0/20"
+      cidr_block = var.cidr_block
     }
   }
 

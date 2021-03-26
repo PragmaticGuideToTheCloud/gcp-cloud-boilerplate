@@ -17,6 +17,11 @@ variable "master_ipv4_cidr_block" {
   default = "10.132.16.0/28"
 }
 
+variable "cidr_block" {
+  type = string
+  default = "10.132.0.0/20"
+}
+
 variable "vpc_name" {
   type = string
   description = "name of the vpc, e.g. `dev` or `prod`"
