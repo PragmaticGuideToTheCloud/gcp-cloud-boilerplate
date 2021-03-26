@@ -2,6 +2,11 @@ variable "project" {
   type = string
 }
 
+variable "state_bucket_suffix" {
+  type = string
+  default = "tfstate"
+}
+
 variable "region" {
   type = string
   default = "europe-west1"
