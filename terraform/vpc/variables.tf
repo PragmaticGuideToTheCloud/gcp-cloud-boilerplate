@@ -12,6 +12,11 @@ variable "region" {
   default = "europe-west1"
 }
 
+variable "peer_routes" {
+  type = string
+  default = "10.132.0.0/16"
+}
+
 variable "vpc_name" {
   type = string
   description = "name of the VPC, e.g. `dev` or `prod`"
