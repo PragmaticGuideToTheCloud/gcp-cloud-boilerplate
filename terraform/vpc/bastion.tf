@@ -89,7 +89,7 @@ resource "local_file" "bastion" {
       "ansible_host=${google_compute_instance.bastion.*.network_interface.0.access_config.0.nat_ip[count.index]}",
       "ansible_port=${var.bastion_port}",
     ])
-    PEER_ROUTES = "${var.peer_routes}"
+    PEER_ROUTES = var.peer_routes
   })
 }
 
