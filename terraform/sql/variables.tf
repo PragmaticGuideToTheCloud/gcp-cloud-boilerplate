@@ -29,7 +29,7 @@ variable "env_name" {
 
 variable "deletion_protection" {
   type = bool
-  default = true
+  default = false
 }
 
 variable "database_version" {
