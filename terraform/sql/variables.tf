@@ -29,7 +29,7 @@ variable "env_name" {
 
 variable "database_version" {
   type = string
-  default = "POSTGRESQL_13"
+  default = "POSTGRES_13"
 }
 
 variable "database_tier" {
