@@ -45,7 +45,7 @@ resource "google_sql_user" "sql-user" {
 resource "google_sql_database" "sql" {
   name      = var.database_name
   charset   = "utf8"
-  collation = "utf8_general_ci"
+#  collation = "utf8_general_ci"
   instance  = google_sql_database_instance.sql.name
 }
 
