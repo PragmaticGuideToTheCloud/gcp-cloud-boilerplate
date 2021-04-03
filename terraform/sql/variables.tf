@@ -1,18 +1,20 @@
-variable "region" {
-  type = string
-}
-
-variable "zone" {
-  type = string
-}
-
 variable "project" {
   type = string
 }
 
-variable "env_name" {
+variable "state_bucket_suffix" {
   type = string
-  description = "name of the gke environment, e.g. `dev1` or `prod1`"
+  default = "tfstate"
+}
+
+variable "region" {
+  type = string
+  default = "europe-west1"
+}
+
+variable "zone" {
+  type = string
+  default = "europe-west1-b"
 }
 
 variable "vpc_name" {
@@ -20,9 +22,14 @@ variable "vpc_name" {
   description = "name of the vpc, e.g. `dev` or `prod`"
 }
 
+variable "env_name" {
+  type = string
+  description = "name of the gke environment, e.g. `dev1` or `prod1`"
+}
+
 variable "database_version" {
   type = string
-  default = "MYSQL_5_7"
+  default = "POSTGRESQL_13"
 }
 
 variable "database_tier" {
