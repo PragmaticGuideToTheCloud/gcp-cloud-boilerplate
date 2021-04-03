@@ -9,6 +9,7 @@ resource "google_sql_database_instance" "sql" {
   region = var.region
 
   database_version = var.database_version
+  deletion_protection = var.deletion_protection
 
   settings {
     tier = var.database_tier

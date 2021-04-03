@@ -27,6 +27,11 @@ variable "env_name" {
   description = "name of the gke environment, e.g. `dev1` or `prod1`"
 }
 
+variable "deletion_protection" {
+  type = bool
+  default = false
+}
+
 variable "database_version" {
   type = string
   default = "POSTGRES_13"
