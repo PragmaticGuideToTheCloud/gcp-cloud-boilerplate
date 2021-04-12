@@ -1,4 +1,3 @@
-
 provider "google" {
   region  = var.region
   project = var.project
@@ -7,5 +6,3 @@ provider "google" {
 provider "random" {}
 
 provider "terraform" {}
-
-# vim:ts=2:sw=2:et:syn=terraform:

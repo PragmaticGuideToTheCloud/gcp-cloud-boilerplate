@@ -1,4 +1,3 @@
-
 resource "random_id" "database-name-suffix" {
   byte_length = 4
 }
@@ -46,8 +45,5 @@ resource "google_sql_user" "sql-user" {
 resource "google_sql_database" "sql" {
   name      = var.database_name
   charset   = "utf8"
-#  collation = "utf8_general_ci"
   instance  = google_sql_database_instance.sql.name
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:

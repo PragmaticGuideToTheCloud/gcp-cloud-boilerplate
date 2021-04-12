@@ -1,4 +1,3 @@
-
 locals {
   wireguard_peer_filename = "vpn/${var.project}-${var.vpc_name}.conf"
 }
