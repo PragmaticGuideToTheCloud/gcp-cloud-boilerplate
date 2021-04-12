@@ -4,13 +4,8 @@ locals {
   wireguard_bastion_file = [ "${var.project}-${var.vpc_name}" ]
 }
 
-resource "random_id" "bastion-name-suffix" {
-  count       = var.bastion_count
-  byte_length = 8
-}
-
 resource "google_compute_instance" "bastion" {
-  name  = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.hex}"
+  name  = "${var.vpc_name}-bastion"
   count = var.bastion_count
   zone  = var.zone
 
