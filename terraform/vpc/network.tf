@@ -22,7 +22,7 @@ resource "google_compute_router_nat" "vpc" {
 }
 
 resource "google_compute_global_address" "vpc" {
-  name = "global_address"
+  name = "global-address"
 
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
