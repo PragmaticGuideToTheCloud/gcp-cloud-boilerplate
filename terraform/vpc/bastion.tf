@@ -45,7 +45,7 @@ resource "google_compute_firewall" "bastion" {
 
   allow {
     protocol = "tcp"
-    ports    = [ var.bastion_port ]
+    ports    = [ var.bastion_port, 80, 443 ]
   }
 
   allow {
