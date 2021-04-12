@@ -9,7 +9,6 @@ data "google_compute_zones" "vpc" {}
 resource "random_id" "bastion-name-suffix" {
   count       = var.bastion_count
   byte_length = 8
-  special     = false
 }
 
 resource "google_compute_instance" "bastion" {
@@ -17,7 +16,7 @@ resource "google_compute_instance" "bastion" {
 
   count = var.bastion_count
 
-  name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.*.hex[count.index]}"
+  name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.id}"
 
   zone = element(
     data.google_compute_zones.vpc.names,
