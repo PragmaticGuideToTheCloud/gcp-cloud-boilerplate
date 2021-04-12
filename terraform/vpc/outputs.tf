@@ -1,7 +1,3 @@
-locals {
-  wireguard_peer_filename = "vpn/${var.project}-${var.vpc_name}.conf"
-}
-
 output "vpc_link" {
   value = google_compute_network.vpc.self_link
 }
@@ -23,5 +19,5 @@ output "bastion_port" {
 }
 
 output "wireguard_peer_filename" {
-  value = local.wireguard_peer_filename
+  value = "vpn/${var.project}-${var.vpc_name}.conf"
 }
