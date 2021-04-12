@@ -57,5 +57,3 @@ variable "database_password" {
 variable "database_name" {
   type = string
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:

@@ -1,14 +1,8 @@
-
-resource "random_id" "database-name-suffix" {
-  byte_length = 4
-}
-
 resource "google_sql_database_instance" "sql" {
-  name = "${var.env_name}-database-${random_id.database-name-suffix.hex}"
-
+  name   = "${var.env_name}-database"
   region = var.region
 
-  database_version = var.database_version
+  database_version    = var.database_version
   deletion_protection = var.deletion_protection
 
   settings {
@@ -29,25 +23,22 @@ resource "google_sql_database_instance" "sql" {
   }
 }
 
-resource "google_sql_user" "sql-root" {
+resource "google_sql_user" "sql_root" {
   name     = "root"
   host     = "%"
   password = var.database_root_password
   instance = google_sql_database_instance.sql.name
 }
 
-resource "google_sql_user" "sql-user" {
+resource "google_sql_user" "sql_user" {
   name     = var.database_user
   host     = "%"
   password = var.database_password
   instance = google_sql_database_instance.sql.name
 }
 
-resource "google_sql_database" "sql" {
+resource "google_sql_database" "db" {
   name      = var.database_name
   charset   = "utf8"
-#  collation = "utf8_general_ci"
   instance  = google_sql_database_instance.sql.name
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:
