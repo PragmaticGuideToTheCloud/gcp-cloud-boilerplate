@@ -1,6 +1,6 @@
 locals {
-  bastion_tags = [ "bastion" ]
-  playbook_dir = "${path.root}/../../../../../../../../ansible/${var.vpc_name}"
+  bastion_tags           = [ "bastion" ]
+  playbook_dir           = "${path.root}/../../../../../../../../ansible/${var.vpc_name}"
   wireguard_bastion_file = [ "${var.project}-${var.vpc_name}" ]
 }
 
@@ -13,10 +13,8 @@ resource "random_id" "bastion-name-suffix" {
 
 resource "google_compute_instance" "bastion" {
   depends_on = [ data.google_compute_zones.vpc ]
-
-  count = var.bastion_count
-
-  name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.id}"
+  name       = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.id}"
+  count      = var.bastion_count
 
   zone = element(
     data.google_compute_zones.vpc.names,
@@ -47,10 +45,9 @@ resource "google_compute_instance" "bastion" {
   tags = local.bastion_tags
 }
 
-resource "google_compute_firewall" "bastion" {
+resource "google_compute_firewall" "bastion_firewall" {
+  name  = "${var.vpc_name}-bastion"
   count = var.bastion_count
-
-  name = "${var.vpc_name}-bastion"
 
   network = google_compute_network.vpc.self_link
 
@@ -71,10 +68,9 @@ resource "google_compute_firewall" "bastion" {
   target_tags = local.bastion_tags
 }
 
-resource "local_file" "bastion" {
+resource "local_file" "bastion_config" {
   depends_on = [ google_compute_instance.bastion ]
-
-  count = var.bastion_count
+  count      = var.bastion_count
 
   filename = "${local.playbook_dir}/hosts.ini"
 
@@ -90,12 +86,12 @@ resource "local_file" "bastion" {
   })
 }
 
-resource "null_resource" "bastion" {
+resource "null_resource" "bastion_provisioner" {
   depends_on = [
     google_compute_global_address.vpc,
     google_service_networking_connection.vpc,
     google_compute_instance.bastion,
-    google_compute_firewall.bastion,
+    google_compute_firewall.bastion_firewall,
   ]
 
   count = var.bastion_count
