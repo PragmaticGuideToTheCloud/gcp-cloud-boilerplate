@@ -16,7 +16,7 @@ resource "google_compute_instance" "bastion" {
 
   count = var.bastion_count
 
-  name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.id}"
+  name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.id}"
 
   zone = element(
     data.google_compute_zones.vpc.names,
