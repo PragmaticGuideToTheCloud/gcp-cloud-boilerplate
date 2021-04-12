@@ -28,7 +28,7 @@ variable "vpc_prefix_length" {
 }
 
 variable "bastion_count" {
-  type = string
+  type = number
   default = 1
   validation {
     condition     = (var.bastion_count == 0) || (var.bastion_count == 1)
