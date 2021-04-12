@@ -4,22 +4,15 @@ locals {
   wireguard_bastion_file = [ "${var.project}-${var.vpc_name}" ]
 }
 
-data "google_compute_zones" "vpc" {}
-
 resource "random_id" "bastion-name-suffix" {
   count       = var.bastion_count
   byte_length = 8
 }
 
 resource "google_compute_instance" "bastion" {
-  depends_on = [ data.google_compute_zones.vpc ]
-  name       = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.hex}"
-  count      = var.bastion_count
-
-  zone = element(
-    data.google_compute_zones.vpc.names,
-    count.index % length(data.google_compute_zones.vpc.names)
-  )
+  name  = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.hex}"
+  count = var.bastion_count
+  zone  = var.zone
 
   machine_type = var.bastion_machine_type
 
