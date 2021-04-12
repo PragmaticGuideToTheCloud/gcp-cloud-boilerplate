@@ -1,10 +1,5 @@
-
 locals {
   wireguard_peer_filename = "vpn/${var.project}-${var.vpc_name}.conf"
-}
-
-output "vpc_link" {
-  value = google_compute_network.vpc.self_link
 }
 
 output "vpc_prefix_length" {

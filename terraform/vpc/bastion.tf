@@ -1,4 +1,3 @@
-
 locals {
   bastion_tags = [ "bastion" ]
   playbook_dir = "${path.root}/../../../../../../../../ansible/${var.vpc_name}"
