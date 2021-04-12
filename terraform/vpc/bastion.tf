@@ -33,7 +33,7 @@ resource "google_compute_instance" "bastion" {
   tags = local.bastion_tags
 }
 
-resource "google_compute_firewall" "bastion_firewall" {
+resource "google_compute_firewall" "bastion" {
   name  = "${var.vpc_name}-bastion"
   count = var.bastion_count
 
@@ -56,7 +56,7 @@ resource "google_compute_firewall" "bastion_firewall" {
   target_tags = local.bastion_tags
 }
 
-resource "local_file" "bastion_config" {
+resource "local_file" "bastion" {
   depends_on = [ google_compute_instance.bastion ]
   count      = var.bastion_count
 
@@ -74,12 +74,12 @@ resource "local_file" "bastion_config" {
   })
 }
 
-resource "null_resource" "bastion_provisioner" {
+resource "null_resource" "bastion" {
   depends_on = [
     google_compute_global_address.vpc,
     google_service_networking_connection.vpc,
     google_compute_instance.bastion,
-    google_compute_firewall.bastion_firewall,
+    google_compute_firewall.bastion,
   ]
 
   count = var.bastion_count
