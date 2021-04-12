@@ -13,7 +13,7 @@ resource "random_id" "bastion-name-suffix" {
 
 resource "google_compute_instance" "bastion" {
   depends_on = [ data.google_compute_zones.vpc ]
-  name       = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.id}"
+  name       = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.0.hex}"
   count      = var.bastion_count
 
   zone = element(
