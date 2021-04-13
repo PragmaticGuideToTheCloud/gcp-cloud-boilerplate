@@ -1,9 +1,5 @@
-resource "random_id" "database-name-suffix" {
-  byte_length = 4
-}
-
 resource "google_sql_database_instance" "sql" {
-  name = "${var.env_name}-database-${random_id.database-name-suffix.hex}"
+  name = "${var.env_name}-database"
 
   region = var.region
 

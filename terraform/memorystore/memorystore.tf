@@ -1,9 +1,5 @@
-resource "random_id" "memorystore-name-suffix" {
-  byte_length = 4
-}
-
-resource "google_redis_instance" "memorystore-redis" {
-  name = "${var.env_name}-memorystore-${random_id.memorystore-name-suffix.hex}"
+resource "google_redis_instance" "memorystore" {
+  name = "${var.env_name}-memorystore"
 
   region = var.region
 
