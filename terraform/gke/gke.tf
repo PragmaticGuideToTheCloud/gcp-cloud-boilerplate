@@ -36,7 +36,7 @@ resource "google_container_cluster" "gke" {
 }
 
 resource "google_container_node_pool" "gke" {
-  name     = "${var.vpc_name}-${var.env_name}-node-pool"
+  name     = "${var.vpc_name}-${var.env_name}-gke-node-pool"
   location = var.zone
   cluster  = google_container_cluster.gke.name
 

@@ -1,5 +1,5 @@
 resource "google_redis_instance" "memorystore" {
-  name = "${var.env_name}-memorystore"
+  name = "${var.vpc_name}-${var.env_name}-memorystore"
 
   region = var.region
 

@@ -1,7 +1,6 @@
 resource "google_compute_firewall" "gke" {
   depends_on = [ data.terraform_remote_state.vpc ]
-
-  name = var.env_name
+  name = "${var.vpc_name}-${var.env_name}-gke-firewall"
 
   network = data.terraform_remote_state.vpc.outputs.vpc_link
 
