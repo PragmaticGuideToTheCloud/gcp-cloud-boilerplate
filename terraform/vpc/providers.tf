@@ -7,4 +7,4 @@ provider "local" {}
 
 provider "null" {}
 
-provider "random" {}
+provider "terraform" {}
