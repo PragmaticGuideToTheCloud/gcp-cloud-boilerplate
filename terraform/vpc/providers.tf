@@ -6,5 +6,3 @@ provider "google" {
 provider "local" {}
 
 provider "null" {}
-
-provider "terraform" {}
