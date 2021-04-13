@@ -8,5 +8,3 @@ provider "local" {}
 provider "null" {}
 
 provider "random" {}
-
-provider "template" {}
