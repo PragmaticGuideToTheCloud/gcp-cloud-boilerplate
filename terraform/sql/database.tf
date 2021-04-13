@@ -28,21 +28,21 @@ resource "google_sql_database_instance" "sql" {
   }
 }
 
-resource "google_sql_user" "sql-root" {
+resource "google_sql_user" "sql_root" {
   name     = "root"
   host     = "%"
   password = var.database_root_password
   instance = google_sql_database_instance.sql.name
 }
 
-resource "google_sql_user" "sql-user" {
+resource "google_sql_user" "sql_user" {
   name     = var.database_user
   host     = "%"
   password = var.database_password
   instance = google_sql_database_instance.sql.name
 }
 
-resource "google_sql_database" "sql" {
+resource "google_sql_database" "db" {
   name      = var.database_name
   charset   = "utf8"
   instance  = google_sql_database_instance.sql.name

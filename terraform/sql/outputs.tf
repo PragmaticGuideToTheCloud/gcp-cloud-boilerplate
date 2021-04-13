@@ -7,13 +7,13 @@ output "database_host" {
 }
 
 output "database_user" {
-  value = google_sql_user.sql-user.name
+  value = google_sql_user.sql_user.name
 }
 
 output "database_password" {
-  value = google_sql_user.sql-user.password
+  value = google_sql_user.sql_user.password
 }
 
 output "database_name" {
-  value = google_sql_database.sql.name
+  value = google_sql_database.db.name
 }
