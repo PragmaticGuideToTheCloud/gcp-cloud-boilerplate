@@ -7,7 +7,7 @@ locals {
 data "google_compute_zones" "vpc" {}
 
 resource "random_id" "bastion-name-suffix" {
-  count = var.bastion_count > 0 ? 1 : 0
+  count = var.bastion_count
 
   byte_length = 4
 }
@@ -15,7 +15,7 @@ resource "random_id" "bastion-name-suffix" {
 resource "google_compute_instance" "bastion" {
   depends_on = [ data.google_compute_zones.vpc ]
 
-  count = var.bastion_count > 0 ? 1 : 0
+  count = var.bastion_count
 
   name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.*.hex[count.index]}"
 
@@ -49,7 +49,7 @@ resource "google_compute_instance" "bastion" {
 }
 
 resource "google_compute_firewall" "bastion" {
-  count = var.bastion_count > 0 ? 1 : 0
+  count = var.bastion_count
 
   name = "${var.vpc_name}-bastion"
 
@@ -76,7 +76,7 @@ resource "google_compute_firewall" "bastion" {
 resource "local_file" "bastion" {
   depends_on = [ google_compute_instance.bastion ]
 
-  count = var.bastion_count > 0 ? 1 : 0
+  count = var.bastion_count
 
   filename = "${local.playbook_dir}/hosts.ini"
 
@@ -101,7 +101,7 @@ resource "null_resource" "bastion" {
     google_compute_firewall.bastion,
   ]
 
-  count = var.bastion_count > 0 ? 1 : 0
+  count = var.bastion_count
 
   triggers = {
     always = uuid()

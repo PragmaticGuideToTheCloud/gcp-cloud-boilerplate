@@ -30,7 +30,10 @@ variable "vpc_prefix_length" {
 variable "bastion_count" {
   type = string
   default = 1
-  description = "anything >0 will be capped by 1"
+  validation {
+    condition     = (var.bastion_count == 0) || (var.bastion_count == 1)
+    error_message = "Number of bastion nodes must be 0 or 1."
+  }
 }
 
 variable "bastion_machine_type" {
