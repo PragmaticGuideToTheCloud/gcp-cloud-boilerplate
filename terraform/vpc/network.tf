@@ -9,7 +9,7 @@ resource "google_compute_network" "vpc" {
 }
 
 resource "google_compute_router" "vpc" {
-  name = var.vpc_name
+  name = "${var.vpc_name}-router"
 
   region = var.region
 
@@ -17,7 +17,7 @@ resource "google_compute_router" "vpc" {
 }
 
 resource "google_compute_router_nat" "vpc" {
-  name = var.vpc_name
+  name = "${var.vpc_name}-router-nat"
 
   region = var.region
 
@@ -29,7 +29,7 @@ resource "google_compute_router_nat" "vpc" {
 }
 
 resource "google_compute_global_address" "vpc" {
-  name = "private-ip-address"
+  name = "${var.vpc_name}-global-address"
 
   purpose      = "VPC_PEERING"
   address_type = "INTERNAL"
