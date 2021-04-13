@@ -42,5 +42,3 @@ variable "memorystore_version" {
 variable "memorystore_name" {
   type = string
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:

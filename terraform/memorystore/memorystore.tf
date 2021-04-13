@@ -1,4 +1,3 @@
-
 resource "random_id" "memorystore-name-suffix" {
   byte_length = 4
 }
@@ -14,5 +13,3 @@ resource "google_redis_instance" "memorystore-redis" {
   reserved_ip_range  = var.memorystore_ip_range
   authorized_network = data.terraform_remote_state.vpc.outputs.vpc_link
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:
