@@ -1,3 +1,7 @@
+terraform {
+  backend "gcs" {}
+}
+
 data "terraform_remote_state" "vpc" {
   backend = "gcs"
   config = {
