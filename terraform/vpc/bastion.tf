@@ -8,16 +8,13 @@ data "google_compute_zones" "vpc" {}
 
 resource "random_id" "bastion-name-suffix" {
   count = var.bastion_count
-
   byte_length = 4
 }
 
 resource "google_compute_instance" "bastion" {
   depends_on = [ data.google_compute_zones.vpc ]
-
-  count = var.bastion_count
-
   name = "${var.vpc_name}-bastion-${random_id.bastion-name-suffix.*.hex[count.index]}"
+  count = var.bastion_count
 
   zone = element(
     data.google_compute_zones.vpc.names,
@@ -50,7 +47,6 @@ resource "google_compute_instance" "bastion" {
 
 resource "google_compute_firewall" "bastion" {
   count = var.bastion_count
-
   name = "${var.vpc_name}-bastion"
 
   network = google_compute_network.vpc.self_link
@@ -72,10 +68,8 @@ resource "google_compute_firewall" "bastion" {
   target_tags = local.bastion_tags
 }
 
-# Prepare ansible inventory file (hosts.ini)
 resource "local_file" "bastion" {
   depends_on = [ google_compute_instance.bastion ]
-
   count = var.bastion_count
 
   filename = "${local.playbook_dir}/hosts.ini"
@@ -92,7 +86,6 @@ resource "local_file" "bastion" {
   })
 }
 
-# Execute ansible/provision-bastion scripts
 resource "null_resource" "bastion" {
   depends_on = [
     google_compute_global_address.vpc,
