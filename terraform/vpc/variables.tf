@@ -12,6 +12,11 @@ variable "region" {
   default = "europe-west1"
 }
 
+variable "zone" {
+  type = string
+  default = "europe-west1-b"
+}
+
 variable "peer_routes" {
   type = string
   default = "10.132.0.0/16"
