@@ -1,5 +1,5 @@
 resource "google_container_cluster" "gke" {
-  name     = var.env_name
+  name     = "${var.vpc_name}-${var.env_name}-gke"
   location = var.zone
 
   remove_default_node_pool = true
@@ -36,7 +36,7 @@ resource "google_container_cluster" "gke" {
 }
 
 resource "google_container_node_pool" "gke" {
-  name     = "default-pool"
+  name     = "${var.vpc_name}-${var.env_name}-node-pool"
   location = var.zone
   cluster  = google_container_cluster.gke.name
 
