@@ -31,6 +31,10 @@ resource "google_compute_instance" "bastion" {
     ssh-keys = join(":", [var.bastion_user, file(var.bastion_public_key_filename)])
   }
 
+  scheduling {
+    preemptible = var.bastion_preemptible
+  }
+
   tags = local.bastion_tags
 }
 

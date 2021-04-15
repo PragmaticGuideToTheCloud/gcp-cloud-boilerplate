@@ -66,6 +66,11 @@ variable "bastion_port" {
   default = "22"
 }
 
+variable "bastion_preemptible" {
+  type = bool
+  default = true
+}
+
 variable "wireguard_port" {
   type = string
   default = "1691"
