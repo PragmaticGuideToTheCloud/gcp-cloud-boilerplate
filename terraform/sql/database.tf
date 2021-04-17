@@ -1,5 +1,11 @@
+resource "random_string" "randstr" {
+  length  = 8
+  special = false
+  upper   = false
+}
+
 resource "google_sql_database_instance" "sql" {
-  name = "${var.vpc_name}-${var.env_name}-database"
+  name = "${var.vpc_name}-${var.env_name}-database-${random_string.randstr}"
 
   region = var.region
 
