@@ -56,6 +56,11 @@ variable "bastion_public_key_filename" {
   default = "~/.ssh/id_rsa.pub"
 }
 
+variable "bastion_public_key_contents" {
+  type = string
+  default = file(var.bastion_public_key_filename)
+}
+
 variable "bastion_user" {
   type = string
   default = "ubuntu"
