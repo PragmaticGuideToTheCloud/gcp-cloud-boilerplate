@@ -77,8 +77,8 @@ resource "local_file" "bastion" {
 
 resource "null_resource" "bastion" {
   depends_on = [
-    google_compute_global_address.vpc,
-    google_service_networking_connection.vpc,
+//    google_compute_global_address.vpc,
+//    google_service_networking_connection.vpc,
     google_compute_instance.bastion,
     google_compute_firewall.bastion,
   ]
