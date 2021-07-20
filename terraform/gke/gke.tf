@@ -50,7 +50,7 @@ resource "google_container_node_pool" "gke" {
   node_config {
     preemptible  = var.compute_preemptible
     machine_type = var.compute_machine_type
-    image_type   = "UBUNTU"
+    image_type   = var.compute_image_type
     disk_size_gb = var.compute_disk_size_gb
 
     metadata = {
