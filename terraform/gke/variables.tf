@@ -66,6 +66,11 @@ variable "compute_machine_type" {
   default = "n1-standard-2"
 }
 
+variable "compute_image_type" {
+  type = string
+  default = "UBUNTU"
+}
+
 variable "compute_disk_size_gb" {
   type = string
   default = 12
