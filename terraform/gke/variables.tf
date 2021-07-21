@@ -69,6 +69,7 @@ variable "compute_machine_type" {
 variable "compute_image_type" {
   type = string
   default = "UBUNTU"
+  description = "https://cloud.google.com/kubernetes-engine/docs/concepts/node-images"
 }
 
 variable "compute_disk_size_gb" {
