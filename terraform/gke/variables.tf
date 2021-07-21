@@ -68,7 +68,7 @@ variable "compute_machine_type" {
 
 variable "compute_image_type" {
   type = string
-  default = "UBUNTU"
+  default = "cos_containerd"
   description = "https://cloud.google.com/kubernetes-engine/docs/concepts/node-images"
 }
 
