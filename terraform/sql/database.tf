@@ -5,6 +5,9 @@ resource "random_string" "randstr" {
 }
 
 resource "google_sql_database_instance" "sql" {
+  # sql name must contain random string
+  # ad GCP does not allow to delete a recreate SQL resource
+  # with the same name
   name = "${var.vpc_name}-${var.env_name}-database-${random_string.randstr.result}"
 
   region = var.region
