@@ -8,14 +8,11 @@ resource "google_container_cluster" "gke" {
   ip_allocation_policy {}
 
   private_cluster_config {
-    enable_private_endpoint = true
+    enable_private_endpoint = false
     enable_private_nodes    = true
     master_ipv4_cidr_block  = var.master_ipv4_cidr_block
-  }
-
-  master_authorized_networks_config {
-    cidr_blocks {
-      cidr_block = var.cidr_block
+    master_global_access_config {
+      enabled = true
     }
   }
 
@@ -44,10 +41,6 @@ resource "google_container_node_pool" "gke" {
     image_type   = var.compute_image_type
     disk_size_gb = var.compute_disk_size_gb
 
-    oauth_scopes = [
-      "storage-ro",
-      "logging-write",
-      "monitoring",
-    ]
+    oauth_scopes = var.gke_oauth_scopes
   }
 }
