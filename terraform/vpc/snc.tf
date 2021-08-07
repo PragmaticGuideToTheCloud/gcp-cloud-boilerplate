@@ -13,6 +13,6 @@ resource "google_service_networking_connection" "vpc" {
   service = "servicenetworking.googleapis.com"
 
   reserved_peering_ranges = [
-    google_compute_global_address.vpc.name,
+    google_compute_global_address.vpc[count.index].name,
   ]
 }
