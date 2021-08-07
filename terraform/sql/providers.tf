@@ -1,3 +1,5 @@
+# the latest provider, 3.78.0, contains a bug
+# that prevents cration of SQL user accounts
 terraform {
   required_providers {
     google = {
