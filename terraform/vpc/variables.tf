@@ -41,6 +41,24 @@ variable "bastion_count" {
   }
 }
 
+variable "nat_count" {
+  type = number
+  default = 1
+  validation {
+    condition     = (var.nat_count >= 0 && var.nat_count <= 1)
+    error_message = "Number of NATs must be 0 or 1."
+  }
+}
+
+variable "snc_count" {
+  type = number
+  default = 1
+  validation {
+    condition     = (var.snc_count >= 0 && var.snc_count <= 1)
+    error_message = "Number of SNCs must be 0 or 1."
+  }
+}
+
 variable "bastion_machine_type" {
   type = string
   default = "f1-micro"
