@@ -76,3 +76,12 @@ variable "compute_disk_size_gb" {
   type = string
   default = 12
 }
+
+variable "gke_oauth_scopes" {
+  type = list(string)
+  default = [
+    "storage-ro",
+    "logging-write",
+    "monitoring",
+  ]
+}
