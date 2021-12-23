@@ -40,6 +40,10 @@ resource "google_compute_firewall" "bastion" {
 
   network = google_compute_network.vpc.self_link
 
+  source_ranges = [
+    "0.0.0.0/0"
+  ]
+
   allow {
     protocol = "icmp"
   }
