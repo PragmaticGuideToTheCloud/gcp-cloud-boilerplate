@@ -16,6 +16,17 @@ resource "google_container_cluster" "gke" {
     }
   }
 
+  master_authorized_networks_config {
+    dynamic "cidr_blocks" {
+      for_each = var.authorized_networks
+
+      content {
+        display_name = cidr_blocks.value["display_name"]
+        cidr_block = cidr_blocks.value["cidr_block"]
+      }
+    }
+  }
+
   workload_identity_config {
     workload_pool = "${var.project}.svc.id.goog"
   }

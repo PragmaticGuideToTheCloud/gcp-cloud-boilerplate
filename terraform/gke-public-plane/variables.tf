@@ -85,3 +85,13 @@ variable "gke_oauth_scopes" {
     "monitoring",
   ]
 }
+
+variable "authorized_networks" {
+  type = list
+  default = [
+    {
+      display_name: "Anywhere",
+      cidr_block: "0.0.0.0/0"
+    },
+  ]
+}
