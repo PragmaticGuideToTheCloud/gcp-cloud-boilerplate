@@ -17,7 +17,7 @@ resource "google_container_cluster" "gke" {
   }
 
   workload_identity_config {
-    identity_namespace = "${var.project}.svc.id.goog"
+    workload_pool = "${var.project}.svc.id.goog"
   }
 
   network = data.terraform_remote_state.vpc.outputs.vpc_link
