@@ -17,6 +17,11 @@ variable "zone" {
   default = "europe-west1-b"
 }
 
+variable "datapath_provider" {
+  type = string
+  default = "ADVANCED_DATAPATH"
+}
+
 variable "master_ipv4_cidr_block" {
   type = string
   default = "10.132.16.0/28"

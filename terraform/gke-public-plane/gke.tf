@@ -1,9 +1,14 @@
 resource "google_container_cluster" "gke" {
   name     = var.env_name
   location = var.zone
+  network  = data.terraform_remote_state.vpc.outputs.vpc_link
 
   remove_default_node_pool = true
   initial_node_count       = 1
+  networking_mode          = "VPC_NATIVE"
+
+  datapath_provider     = var.datapath_provider
+  enable_shielded_nodes = true
 
   ip_allocation_policy {}
 
@@ -30,8 +35,6 @@ resource "google_container_cluster" "gke" {
   workload_identity_config {
     workload_pool = "${var.project}.svc.id.goog"
   }
-
-  network = data.terraform_remote_state.vpc.outputs.vpc_link
 }
 
 resource "google_container_node_pool" "gke" {
