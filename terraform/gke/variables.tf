@@ -17,6 +17,11 @@ variable "zone" {
   default = "europe-west1-b"
 }
 
+variable "datapath_provider" {
+  type = string
+  default = "ADVANCED_DATAPATH"
+}
+
 variable "master_ipv4_cidr_block" {
   type = string
   default = "10.132.16.0/28"
@@ -75,4 +80,23 @@ variable "compute_image_type" {
 variable "compute_disk_size_gb" {
   type = string
   default = 12
+}
+
+variable "gke_oauth_scopes" {
+  type = list(string)
+  default = [
+    "storage-ro",
+    "logging-write",
+    "monitoring",
+  ]
+}
+
+variable "authorized_networks" {
+  type = list
+  default = [
+    {
+      display_name: "Anywhere",
+      cidr_block: "0.0.0.0/0"
+    },
+  ]
 }

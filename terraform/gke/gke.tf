@@ -1,9 +1,14 @@
 resource "google_container_cluster" "gke" {
   name     = var.env_name
   location = var.zone
+  network  = data.terraform_remote_state.vpc.outputs.vpc_link
 
   remove_default_node_pool = true
   initial_node_count       = 1
+  networking_mode          = "VPC_NATIVE"
+
+  datapath_provider     = var.datapath_provider
+  enable_shielded_nodes = true
 
   ip_allocation_policy {}
 
@@ -14,16 +19,19 @@ resource "google_container_cluster" "gke" {
   }
 
   master_authorized_networks_config {
-    cidr_blocks {
-      cidr_block = var.cidr_block
+    dynamic "cidr_blocks" {
+      for_each = var.authorized_networks
+
+      content {
+        display_name = cidr_blocks.value["display_name"]
+        cidr_block = cidr_blocks.value["cidr_block"]
+      }
     }
   }
 
   workload_identity_config {
     workload_pool = "${var.project}.svc.id.goog"
   }
-
-  network = data.terraform_remote_state.vpc.outputs.vpc_link
 }
 
 resource "google_container_node_pool" "gke" {
@@ -44,10 +52,6 @@ resource "google_container_node_pool" "gke" {
     image_type   = var.compute_image_type
     disk_size_gb = var.compute_disk_size_gb
 
-    oauth_scopes = [
-      "storage-ro",
-      "logging-write",
-      "monitoring",
-    ]
+    oauth_scopes = var.gke_oauth_scopes
   }
 }
