@@ -34,7 +34,7 @@ variable "vpc_prefix_length" {
 
 variable "bastion_count" {
   type = number
-  default = 1
+  default = 0
   validation {
     condition     = (var.bastion_count >= 0 && var.bastion_count <= 1)
     error_message = "Number of bastion nodes must be 0 or 1."
