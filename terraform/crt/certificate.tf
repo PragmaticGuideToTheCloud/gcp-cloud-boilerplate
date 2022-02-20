@@ -1,15 +1,15 @@
 
-resource "tls_private_key" "aiqa-crt-gcp" {
+resource "tls_private_key" "foobar-crt-gcp" {
   algorithm = "RSA"
 }
 
-resource "acme_registration" "aiqa-crt-gcp" {
-  account_key_pem = tls_private_key.aiqa-crt-gcp.private_key_pem
+resource "acme_registration" "foobar-crt-gcp" {
+  account_key_pem = tls_private_key.foobar-crt-gcp.private_key_pem
   email_address   = var.acme_email_address
 }
 
-resource "acme_certificate" "aiqa-crt-gcp" {
-  account_key_pem = acme_registration.aiqa-crt-gcp.account_key_pem
+resource "acme_certificate" "foobar-crt-gcp" {
+  account_key_pem = acme_registration.foobar-crt-gcp.account_key_pem
   common_name     = "*.${var.ovh_dns_zone}"
 
   recursive_nameservers = var.nameservers
@@ -26,11 +26,11 @@ resource "acme_certificate" "aiqa-crt-gcp" {
   }
 }
 
-resource "google_compute_ssl_certificate" "aiqa-crt-gcp" {
+resource "google_compute_ssl_certificate" "foobar-crt-gcp" {
   name = var.crt_name
 
-  private_key = acme_certificate.aiqa-crt-gcp.private_key_pem
-  certificate = "${acme_certificate.aiqa-crt-gcp.certificate_pem}${acme_certificate.aiqa-crt-gcp.issuer_pem}"
+  private_key = acme_certificate.foobar-crt-gcp.private_key_pem
+  certificate = "${acme_certificate.foobar-crt-gcp.certificate_pem}${acme_certificate.foobar-crt-gcp.issuer_pem}"
 
   lifecycle {
     create_before_destroy = true
