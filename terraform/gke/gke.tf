@@ -53,5 +53,7 @@ resource "google_container_node_pool" "gke" {
     disk_size_gb = var.compute_disk_size_gb
 
     oauth_scopes = var.gke_oauth_scopes
+
+    tags         = []
   }
 }
