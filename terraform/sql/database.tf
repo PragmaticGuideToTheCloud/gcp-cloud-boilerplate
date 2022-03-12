@@ -38,6 +38,7 @@ resource "google_sql_user" "sql_root" {
   host     = "%"
   password = var.database_root_password
   instance = google_sql_database_instance.sql.name
+  type     = "BUILT_IN"
 }
 
 resource "google_sql_user" "sql_user" {
@@ -45,6 +46,7 @@ resource "google_sql_user" "sql_user" {
   host     = "%"
   password = var.database_password
   instance = google_sql_database_instance.sql.name
+  type     = "BUILT_IN"
 }
 
 resource "google_sql_database" "db" {
