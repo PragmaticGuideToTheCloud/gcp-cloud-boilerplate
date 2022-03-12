@@ -3,37 +3,37 @@ variable "project" {
 }
 
 variable "state_bucket_suffix" {
-  type = string
+  type    = string
   default = "tfstate"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "europe-west1"
 }
 
 variable "zone" {
-  type = string
+  type    = string
   default = "europe-west1-b"
 }
 
 variable "peer_routes" {
-  type = string
+  type    = string
   default = "10.132.0.0/16"
 }
 
 variable "vpc_name" {
-  type = string
+  type        = string
   description = "name of the VPC, e.g. `dev` or `prod`"
 }
 
 variable "vpc_prefix_length" {
-  type = string
+  type    = string
   default = "20"
 }
 
 variable "bastion_count" {
-  type = number
+  type    = number
   default = 0
   validation {
     condition     = (var.bastion_count >= 0 && var.bastion_count <= 1)
@@ -42,7 +42,7 @@ variable "bastion_count" {
 }
 
 variable "nat_count" {
-  type = number
+  type    = number
   default = 1
   validation {
     condition     = (var.nat_count >= 0 && var.nat_count <= 1)
@@ -51,7 +51,7 @@ variable "nat_count" {
 }
 
 variable "snc_count" {
-  type = number
+  type    = number
   default = 1
   validation {
     condition     = (var.snc_count >= 0 && var.snc_count <= 1)
@@ -60,32 +60,32 @@ variable "snc_count" {
 }
 
 variable "bastion_machine_type" {
-  type = string
+  type    = string
   default = "f1-micro"
 }
 
 variable "bastion_boot_disk_image" {
-  type = string
+  type    = string
   default = "ubuntu-os-cloud/ubuntu-minimal-1804-lts"
 }
 
 variable "bastion_public_key_filename" {
-  type = string
+  type    = string
   default = "~/.ssh/id_rsa.pub"
 }
 
 variable "bastion_user" {
-  type = string
+  type    = string
   default = "ubuntu"
 }
 
 variable "bastion_port" {
-  type = string
+  type    = string
   default = "22"
 }
 
 variable "wireguard_port" {
-  type = string
+  type    = string
   default = "1691"
 }
 

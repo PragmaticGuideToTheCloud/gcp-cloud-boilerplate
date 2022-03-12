@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "sql" {
 
   region = var.region
 
-  database_version = var.database_version
+  database_version    = var.database_version
   deletion_protection = var.deletion_protection
 
   settings {
@@ -54,7 +54,7 @@ resource "google_sql_user" "sql_user" {
 }
 
 resource "google_sql_database" "db" {
-  name      = var.database_name
-  charset   = "utf8"
-  instance  = google_sql_database_instance.sql.name
+  name     = var.database_name
+  charset  = "utf8"
+  instance = google_sql_database_instance.sql.name
 }

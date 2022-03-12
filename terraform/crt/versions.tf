@@ -1,12 +1,12 @@
 terraform {
   required_providers {
-    acme = {
+    acme   = {
       source = "terraform-providers/acme"
     }
     google = {
       source = "hashicorp/google"
     }
-    tls = {
+    tls    = {
       source = "hashicorp/tls"
     }
   }

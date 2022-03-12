@@ -4,7 +4,7 @@ terraform {
 
 data "terraform_remote_state" "vpc" {
   backend = "gcs"
-  config = {
+  config  = {
     bucket = "${var.project}-${var.state_bucket_suffix}"
     prefix = "vpc/${var.vpc_name}"
   }

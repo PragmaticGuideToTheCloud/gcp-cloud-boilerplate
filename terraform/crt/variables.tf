@@ -1,4 +1,3 @@
-
 variable "region" {
   type = string
 }
@@ -40,7 +39,7 @@ variable "acme_email_address" {
 }
 
 variable "nameservers" {
-  type = list(string)
+  type    = list(string)
   default = [
     "dns108.ovh.net:53",
     "ns108.ovh.net:53",

@@ -1,4 +1,3 @@
-
 resource "tls_private_key" "foobar-crt-gcp" {
   algorithm = "RSA"
 }

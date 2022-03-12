@@ -27,7 +27,7 @@ resource "google_container_cluster" "gke" {
 
       content {
         display_name = cidr_blocks.value["display_name"]
-        cidr_block = cidr_blocks.value["cidr_block"]
+        cidr_block   = cidr_blocks.value["cidr_block"]
       }
     }
   }
@@ -57,6 +57,6 @@ resource "google_container_node_pool" "gke" {
 
     oauth_scopes = var.gke_oauth_scopes
 
-    tags         = []
+    tags = []
   }
 }

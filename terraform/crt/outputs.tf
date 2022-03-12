@@ -1,4 +1,3 @@
-
 output "certificate_link" {
   value = google_compute_ssl_certificate.foobar-crt-gcp.self_link
 }

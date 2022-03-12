@@ -3,7 +3,7 @@ output "cluster_endpoint" {
 }
 
 output "client_key" {
-  value = google_container_cluster.gke.master_auth.0.client_key
+  value     = google_container_cluster.gke.master_auth.0.client_key
   sensitive = true
 }
 

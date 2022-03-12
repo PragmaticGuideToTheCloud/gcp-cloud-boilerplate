@@ -3,61 +3,61 @@ variable "project" {
 }
 
 variable "state_bucket_suffix" {
-  type = string
+  type    = string
   default = "tfstate"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "europe-west1"
 }
 
 variable "zone" {
-  type = string
+  type    = string
   default = "europe-west1-b"
 }
 
 variable "vpc_name" {
-  type = string
+  type        = string
   description = "name of the vpc, e.g. `dev` or `prod`"
 }
 
 variable "env_name" {
-  type = string
+  type        = string
   description = "name of the gke environment, e.g. `dev1` or `prod1`"
 }
 
 variable "deletion_protection" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "database_tier" {
-  type = string
+  type    = string
   default = "db-f1-micro"
 }
 
 variable "database_version" {
-  type = string
+  type    = string
   default = "POSTGRES_13"
 }
 
 variable "database_root_password" {
-  type = string
+  type    = string
   default = "thisIsA123PASS"
 }
 
 variable "database_user" {
-  type = string
+  type    = string
   default = "apiuser"
 }
 
 variable "database_password" {
-  type = string
+  type    = string
   default = "SecretPassword123!"
 }
 
 variable "database_name" {
-  type = string
+  type    = string
   default = "apidb"
 }

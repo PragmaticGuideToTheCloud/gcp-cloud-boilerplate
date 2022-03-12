@@ -11,7 +11,7 @@ output "database_user" {
 }
 
 output "database_password" {
-  value = google_sql_user.sql_user.password
+  value     = google_sql_user.sql_user.password
   sensitive = true
 }
 
