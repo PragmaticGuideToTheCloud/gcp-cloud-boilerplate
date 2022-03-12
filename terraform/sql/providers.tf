@@ -1,10 +1,10 @@
-# the latest provider, 3.78.0, contains a bug
-# that prevents cration of SQL user accounts
 terraform {
+  required_version = "1.1.7"
+
   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = "3.77.0"
+      source = "hashicorp/google"
+      version = "4.11.0"
     }
   }
 }
