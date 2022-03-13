@@ -11,7 +11,7 @@ resource "google_project_iam_custom_role" "custom_role" {
 }
 
 # What permissions does service account have in the project?
-resource "google_project_iam_member" "gcr_cleaner_project_iam" {
+resource "google_project_iam_member" "member" {
 
   depends_on = [
     google_service_account.gsa,
