@@ -4,6 +4,7 @@
 * GCP ✓
 * VPC ✓
 * GKE ✓
+* GSA ✓
 * SQL ✓
 * MEMORYSTORE ✓
 * bastion + wireguard ✓
@@ -14,6 +15,8 @@ Cloud details:
 VPC
     NETWORK:
         google_compute_network
+        google_compute_subnetwork (custom)
+        google_compute_firewall (custom)
         google_compute_router
         google_compute_router_nat
         google_compute_global_address
@@ -26,17 +29,16 @@ VPC
         null_resource
 
 GKE
-    ACCOUNTS
-        google_service_account
-        google_project_iam_member
-    FIREWALL
-        google_compute_firewall
     INSTANCES
         google_container_cluster
         google_container_node_pool
-    PROVISIONING
-        kubernetes_service_account
-        kubernetes_cluster_role_binding
+
+
+GSA
+    ACCOUNTS
+        google_service_account
+        google_project_iam_custom_role
+        google_project_iam_member
 
 SQL
     DATABASE
@@ -48,12 +50,3 @@ MEMORYSTORE
     MEMORYSTORE
         google_redis_instance
 ```
-
-Parameters:
-
-* GKE in zone / GKE in region
-* GKE with autoscaling / GKE without autoscaling
-* GKE nodes: regular / preemptible
-* GKE node: n1-standard-1, n1-standard-2, etc.
-* GKE number of nodes
-* GKE number of pods
