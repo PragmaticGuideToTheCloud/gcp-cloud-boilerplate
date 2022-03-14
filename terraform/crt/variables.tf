@@ -45,5 +45,3 @@ variable "nameservers" {
     "ns108.ovh.net:53",
   ]
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:

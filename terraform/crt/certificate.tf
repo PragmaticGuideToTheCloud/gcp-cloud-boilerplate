@@ -1,14 +1,14 @@
-resource "tls_private_key" "foobar-crt-gcp" {
+resource "tls_private_key" "foobar_crt_gcp" {
   algorithm = "RSA"
 }
 
-resource "acme_registration" "foobar-crt-gcp" {
-  account_key_pem = tls_private_key.foobar-crt-gcp.private_key_pem
+resource "acme_registration" "foobar_crt_gcp" {
+  account_key_pem = tls_private_key.foobar_crt_gcp.private_key_pem
   email_address   = var.acme_email_address
 }
 
-resource "acme_certificate" "foobar-crt-gcp" {
-  account_key_pem = acme_registration.foobar-crt-gcp.account_key_pem
+resource "acme_certificate" "foobar_crt_gcp" {
+  account_key_pem = acme_registration.foobar_crt_gcp.account_key_pem
   common_name     = "*.${var.ovh_dns_zone}"
 
   recursive_nameservers = var.nameservers
@@ -25,15 +25,13 @@ resource "acme_certificate" "foobar-crt-gcp" {
   }
 }
 
-resource "google_compute_ssl_certificate" "foobar-crt-gcp" {
+resource "google_compute_ssl_certificate" "foobar_crt_gcp" {
   name = var.crt_name
 
-  private_key = acme_certificate.foobar-crt-gcp.private_key_pem
-  certificate = "${acme_certificate.foobar-crt-gcp.certificate_pem}${acme_certificate.foobar-crt-gcp.issuer_pem}"
+  private_key = acme_certificate.foobar_crt_gcp.private_key_pem
+  certificate = "${acme_certificate.foobar_crt_gcp.certificate_pem}${acme_certificate.foobar_crt_gcp.issuer_pem}"
 
   lifecycle {
     create_before_destroy = true
   }
 }
-
-# vim:ts=2:sw=2:et:syn=terraform:
