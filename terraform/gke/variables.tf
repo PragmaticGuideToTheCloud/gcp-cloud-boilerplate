@@ -37,9 +37,9 @@ variable "vpc_name" {
   description = "name of the vpc, e.g. `dev` or `prod`"
 }
 
-variable "env_name" {
+variable "cluster_name" {
   type        = string
-  description = "name of the gke cluster, e.g. `dev1` or `prod1`"
+  description = "name of the gke cluster"
 }
 
 variable "initial_node_count" {

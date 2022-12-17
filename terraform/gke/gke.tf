@@ -1,5 +1,5 @@
 resource "google_container_cluster" "gke" {
-  name     = var.env_name
+  name     = var.cluster_name
   location = var.zone
   network  = data.terraform_remote_state.vpc.outputs.vpc_link
 
@@ -35,7 +35,7 @@ resource "google_container_cluster" "gke" {
 }
 
 resource "google_container_node_pool" "gke" {
-  name     = "${var.env_name}-gke-node-pool"
+  name     = "${var.cluster_name}-gke-node-pool"
   location = var.zone
   cluster  = google_container_cluster.gke.name
 
