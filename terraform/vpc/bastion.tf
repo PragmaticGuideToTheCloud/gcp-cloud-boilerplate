@@ -69,13 +69,13 @@ resource "local_file" "bastion" {
 
   content = templatefile("${local.playbook_dir}/hosts.ini.tpl", {
     WIREGUARD_PEERS = "WIREGUARD_PEERS=${jsonencode(local.wireguard_bastion_file)}"
-    TARGET          = join(" ", [
+    TARGET = join(" ", [
       google_compute_instance.bastion.*.name[count.index],
       "ansible_user=${var.bastion_user}",
       "ansible_host=${google_compute_instance.bastion.*.network_interface.0.access_config.0.nat_ip[count.index]}",
       "ansible_port=${var.bastion_port}",
     ])
-    PEER_ROUTES     = var.peer_routes
+    PEER_ROUTES = var.peer_routes
   })
 }
 
@@ -97,7 +97,7 @@ resource "null_resource" "bastion" {
     environment = {
       PLAYBOOK_DIR = local.playbook_dir
     }
-    command     = <<-EOF
+    command = <<-EOF
     $PLAYBOOK_DIR/apply.sh
     EOF
   }

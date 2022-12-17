@@ -2,14 +2,14 @@ terraform {
   required_version = ">=1.1.7"
 
   required_providers {
-    acme   = {
+    acme = {
       source = "terraform-providers/acme"
     }
     google = {
       source  = "hashicorp/google"
       version = "4.11.0"
     }
-    tls    = {
+    tls = {
       source = "hashicorp/tls"
     }
   }

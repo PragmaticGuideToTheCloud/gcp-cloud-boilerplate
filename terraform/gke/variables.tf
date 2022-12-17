@@ -83,7 +83,7 @@ variable "compute_disk_size_gb" {
 }
 
 variable "gke_oauth_scopes" {
-  type    = list(string)
+  type = list(string)
   default = [
     "storage-ro",
     "logging-write",
@@ -92,7 +92,7 @@ variable "gke_oauth_scopes" {
 }
 
 variable "authorized_networks" {
-  type    = list
+  type = list(any)
   default = [
     {
       display_name : "Anywhere",
