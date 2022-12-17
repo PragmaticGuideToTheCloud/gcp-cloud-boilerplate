@@ -19,8 +19,8 @@ resource "google_compute_subnetwork" "subnet" {
 }
 
 resource "google_compute_firewall" "firewall" {
-  name          = var.firewall_name
-  network       = google_compute_network.vpc.self_link
+  name    = var.firewall_name
+  network = google_compute_network.vpc.self_link
   allow {
     protocol = "tcp"
     ports    = [22, 80]

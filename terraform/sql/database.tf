@@ -34,7 +34,7 @@ resource "google_sql_database_instance" "sql" {
 }
 
 resource "google_sql_user" "sql_root" {
-  name     = "root"
+  name = "root"
   # do not set host for Postgres
   # host     = "%"
   password = var.database_root_password
@@ -44,7 +44,7 @@ resource "google_sql_user" "sql_root" {
 }
 
 resource "google_sql_user" "sql_user" {
-  name     = var.database_user
+  name = var.database_user
   # do not set host for Postgres
   # host     = "%"
   password = var.database_password
