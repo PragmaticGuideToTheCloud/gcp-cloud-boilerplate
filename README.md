@@ -2,6 +2,7 @@
 ========
 
 * GCP ✓
+* PROJECT: PRODUCT/ENV ✓
 * VPC ✓
 * GKE ✓
 * GSA ✓
@@ -12,6 +13,9 @@
 Cloud details:
 
 ```
+PROJECT
+    BUCKET
+        google_storage_bucket
 VPC
     NETWORK:
         google_compute_network
