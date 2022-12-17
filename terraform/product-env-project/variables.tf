@@ -18,7 +18,3 @@ variable "project_name" {
 variable "parent_folder_id" {
   type = string
 }
-
-variable "terraform_service_account" {
-  type = string
-}
